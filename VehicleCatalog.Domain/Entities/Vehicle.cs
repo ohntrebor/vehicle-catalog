@@ -84,10 +84,12 @@ public class Vehicle
     /// Status do pagamento
     /// </summary>
     [Column("payment_status")]
-    public PaymentStatus PaymentStatus { get; private set; } = PaymentStatus.Pending;
+    public PaymentStatus PaymentStatus { get; set; }
 
     protected Vehicle()
     {
+        Id = Guid.NewGuid();
+        CreatedAt = DateTime.UtcNow;
         PaymentStatus = PaymentStatus.Pending;
     }
 

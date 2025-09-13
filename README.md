@@ -1,4 +1,4 @@
-# 🚗 Vehicle Resale API
+# 🚗 Vehicle Catalog API
 
 ## 📋 Descrição do Projeto
 
@@ -9,21 +9,21 @@ API RESTful desenvolvida em **.NET 8** para gerenciamento de revenda de veículo
 - Implementar as melhores práticas de arquitetura de software
 - Garantir escalabilidade e manutenibilidade do código
 
-## **🏗️ Arquitetura do Projeto VehicleResale**
+## **🏗️ Arquitetura do Projeto VehicleCatalog**
 
 Seu projeto segue a **Clean Architecture** com separação clara de responsabilidades. Vou explicar cada camada:
 
-VehicleResale/
+VehicleCatalog/
 <br>
-├── 🎯 VehicleResale.API          # Camada de Apresentação
+├── 🎯 VehicleCatalog.API          # Camada de Apresentação
 <br>
-├── 🧠 VehicleResale.Application  # Camada de Aplicação
+├── 🧠 VehicleCatalog.Application  # Camada de Aplicação
 <br>
-├── 💎 VehicleResale.Domain       # Camada de Domínio
+├── 💎 VehicleCatalog.Domain       # Camada de Domínio
 <br>
-└── 🔌 VehicleResale.Infrastructure # Camada de Infraestrutura
+└── 🔌 VehicleCatalog.Infrastructure # Camada de Infraestrutura
 
-## **🎯 VehicleResale.API (Camada de Apresentação)**
+## **🎯 VehicleCatalog.API (Camada de Apresentação)**
 
 **Responsabilidade:** Interface externa da aplicação
 
@@ -32,7 +32,7 @@ VehicleResale/
 - **Health** 💊 - Health checks (monitoramento)
 - **Program.cs** ⚙️ - Configuração da aplicação
 - **appsettings.json** 📄 - Configurações (connection strings, URLs)
-- **VehicleResale.API.http** 📝 - Testes de API
+- **VehicleCatalog.API.http** 📝 - Testes de API
 
 ### **Função:**
 - Recebe requisições HTTP
@@ -42,7 +42,7 @@ VehicleResale/
 - Configuração de DI e middleware
 
 
-## **🧠 VehicleResale.Application (Camada de Aplicação)**
+## **🧠 VehicleCatalog.Application (Camada de Aplicação)**
 
 **Responsabilidade:** Casos de uso e lógica de negócio
 
@@ -61,7 +61,7 @@ VehicleResale/
 - Implementa casos de uso específicos
 
 
-## **💎 VehicleResale.Domain (Camada de Domínio)**
+## **💎 VehicleCatalog.Domain (Camada de Domínio)**
 
 **Responsabilidade:** Regras de negócio puras e entidades
 
@@ -77,7 +77,7 @@ VehicleResale/
 - **NÃO depende de nenhuma outra camada**
 
 
-## **🔌 VehicleResale.Infrastructure (Camada de Infraestrutura)**
+## **🔌 VehicleCatalog.Infrastructure (Camada de Infraestrutura)**
 
 **Responsabilidade:** Implementações técnicas e acesso a dados
 
@@ -178,10 +178,10 @@ dotnet restore
 
 # Configure o 🐘 Postgre local ou ajuste a connection string
 # Execute as migrations
-dotnet ef database update -p VehicleResale.Infrastructure -s VehicleResale.API
+dotnet ef database update -p VehicleCatalog.Infrastructure -s VehicleCatalog.API
 
 # Execute a aplicação
-dotnet run --project VehicleResale.API
+dotnet run --project VehicleCatalog.API
 
 # Abrirá em: https://localhost:7157/swagger/index.html
 ```
@@ -205,10 +205,10 @@ docker compose down
 kubectl apply -f k8s/
 
 # Verifique o status
-kubectl get all -n vehicle-resale
+kubectl get all -n vehicle-catalog
 
 # Port-forward para teste local
-kubectl port-forward -n vehicle-resale service/vehicle-resale-api-service 8080:80
+kubectl port-forward -n vehicle-catalog service/vehicle-catalog-api-service 8080:80
 
 # Acesse em: http://localhost:8080/swagger/index.html
 ```
@@ -276,7 +276,7 @@ POST /api/vehicles/payment-webhook
 
 ### 📝 Importar Coleção Postman
 
-Importe o arquivo `VehicleResale.postman_collection.json` no Postman para ter acesso a todos os endpoints configurados.
+Importe o arquivo `VehicleCatalog.postman_collection.json` no Postman para ter acesso a todos os endpoints configurados.
 
 ## 📊 Monitoramento
 
@@ -319,5 +319,5 @@ choco install pandoc && choco install wkhtmltopdf
 
 
 ```bash
-pandoc documentation.md -o VehicleResaleAPI_Documentation.pdf --pdf-engine=wkhtmltopdf --toc --number-sections
+pandoc documentation.md -o VehicleCatalogAPI_Documentation.pdf --pdf-engine=wkhtmltopdf --toc --number-sections
 ```

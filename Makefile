@@ -2,7 +2,7 @@
 
 ## 📋 Mostra esta ajuda com todos os comandos disponíveis
 help:
-	@echo "🚀 Vehicle Resale API - Comandos Disponiveis:"
+	@echo "🚀 Vehicle Catalog API - Comandos Disponiveis:"
 	@echo ""
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
@@ -24,7 +24,7 @@ build:
 run: 
 	@echo "▶️ Iniciando aplicacao local..."
 	@echo "🌐 API disponível em: http://localhost:5000"
-	dotnet run --project VehicleResale.API
+	dotnet run --project VehicleCatalog.API
 
 ## 🧪 Executa todos os testes do projeto
 test: 
@@ -58,22 +58,22 @@ dev-setup: restore build
 ## ➕ Adiciona nova migration (uso: make migration-add NAME=NomeDaMigracao)
 migration-add: 
 	@echo "➕ Adicionando migration: $(NAME)"
-	dotnet ef migrations add $(NAME) -p VehicleResale.Infrastructure -s VehicleResale.API -o Data/Migrations
+	dotnet ef migrations add $(NAME) -p VehicleCatalog.Infrastructure -s VehicleCatalog.API -o Data/Migrations
 
 ## ➖ Remove última migration
 migration-remove: 
 	@echo "➖ Removendo ultima migration..."
-	dotnet ef migrations remove -p VehicleResale.Infrastructure -s VehicleResale.API
+	dotnet ef migrations remove -p VehicleCatalog.Infrastructure -s VehicleCatalog.API
 
 ## 🔄 Atualiza banco de dados com migrations pendentes
 migration-update: 
 	@echo "🔄 Atualizando banco de dados..."
-	dotnet ef database update -p VehicleResale.Infrastructure -s VehicleResale.API
+	dotnet ef database update -p VehicleCatalog.Infrastructure -s VehicleCatalog.API
 
 ## 📊 Mostra status das migrations
 migration-status: 
 	@echo "📊 Status das migrations:"
-	dotnet ef migrations list -p VehicleResale.Infrastructure -s VehicleResale.API
+	dotnet ef migrations list -p VehicleCatalog.Infrastructure -s VehicleCatalog.API
 
 
 # ========================================
@@ -83,7 +83,7 @@ migration-status:
 ## 🔨 Constrói imagem Docker da aplicação
 docker-build: 
 	@echo "🔨 Construindo imagem Docker..."
-	docker build -t vehicle-resale-api:latest .
+	docker build -t vehicle-catalog-api:latest .
 
 ## 🚀 Inicia todos os serviços com Docker Compose
 docker-run: 
@@ -130,7 +130,7 @@ k8s-start:
 ## 🔨 Constrói imagem no ambiente Minikube
 k8s-build:
 	@echo "🔨 Configurando Docker do Minikube e construindo imagem..."
-	@powershell -Command "minikube docker-env | Invoke-Expression; docker build -t vehicle-resale-api:latest ."
+	@powershell -Command "minikube docker-env | Invoke-Expression; docker build -t vehicle-catalog-api:latest ."
 	@echo "✅ Imagem construída no Minikube!"
 
 ## 🚀 Faz deploy da aplicação no Kubernetes
@@ -139,7 +139,7 @@ k8s-deploy:
 	kubectl apply -f k8s/
 	@echo "✅ Deploy realizado!"
 	@echo "⏳ Aguarde os pods ficarem prontos..."
-	kubectl wait --for=condition=ready pod -l app=vehicle-resale-api -n vehicle-resale --timeout=300s
+	kubectl wait --for=condition=ready pod -l app=vehicle-catalog-api -n vehicle-catalog --timeout=300s
 	@echo "🔗 Para acessar a API, execute: make k8s-port-forward"
 	@echo "🌐 Depois acesse: http://localhost:9000/swagger/index.html"
 
@@ -151,39 +151,39 @@ k8s-delete:
 ## 📊 Mostra status dos recursos no Kubernetes
 k8s-status: 
 	@echo "📊 Status dos recursos Kubernetes:"
-	kubectl get all -l app=vehicle-resale-api -n vehicle-resale
+	kubectl get all -l app=vehicle-catalog-api -n vehicle-catalog
 	@echo ""
 	@echo "📋 Pods detalhados:"
-	kubectl get pods -o wide -n vehicle-resale
+	kubectl get pods -o wide -n vehicle-catalog
 
 ## 🌐 Configurando portal manualmente - port-forward para acessar API (http://localhost:9000/swagger/index.html)
 k8s-port-forward: 
 	@echo "🌐 Configurando acesso a API via port-forward..."
 	@echo "🔗 API disponivel em: http://localhost:9000/swagger/index.html"
 	@echo "⏹️ Para parar: Ctrl+C"
-	kubectl port-forward -n vehicle-resale service/vehicle-resale-api-service 9000:80
+	kubectl port-forward -n vehicle-catalog service/vehicle-catalog-api-service 9000:80
 
 ## 📋 Mostra logs da aplicação no Kubernetes
 k8s-logs:
 	@echo "📋 Logs da aplicação:"
-	kubectl logs -l app=vehicle-resale-api -n vehicle-resale -f
+	kubectl logs -l app=vehicle-catalog-api -n vehicle-catalog -f
 
 ## 🔧 Acessa shell do pod da aplicação
 k8s-shell: 
 	@echo "🔧 Acessando shell do pod..."
-	kubectl exec -it $$(kubectl get pod -l app=vehicle-resale-api -n vehicle-resale -o jsonpath='{.items[0].metadata.name}') -- /bin/bash
+	kubectl exec -it $$(kubectl get pod -l app=vehicle-catalog-api -n vehicle-catalog -o jsonpath='{.items[0].metadata.name}') -- /bin/bash
 
 ## 🔄 Reinicia deployment no Kubernetes
 k8s-restart: 
 	@echo "🔄 Reiniciando deployment..."
-	kubectl rollout restart deployment/vehicle-resale-api-deployment -n vehicle-resale
-	kubectl rollout status deployment/vehicle-resale-api-deployment -n vehicle-resale
+	kubectl rollout restart deployment/vehicle-catalog-api-deployment -n vehicle-catalog
+	kubectl rollout status deployment/vehicle-catalog-api-deployment -n vehicle-catalog
 
 ## 🧹 Para Minikube e limpa recursos
 k8s-clean:
 	@echo "🧹 Limpando ambiente Kubernetes..."
-	kubectl delete all --all -n vehicle-resale
-	kubectl delete namespace vehicle-resale
+	kubectl delete all --all -n vehicle-catalog
+	kubectl delete namespace vehicle-catalog
 	minikube stop
 	minikube delete
 
@@ -196,17 +196,17 @@ k8s-dashboard:
 k8s-redeploy:
 	@echo "🔄 Fazendo redeploy apos mudancas..."
 	@echo "🔨 Reconstruindo imagem..."
-	@powershell -Command "minikube docker-env | Invoke-Expression; docker build -t vehicle-resale-api:latest ."
+	@powershell -Command "minikube docker-env | Invoke-Expression; docker build -t vehicle-catalog-api:latest ."
 	@echo "🔄 Reiniciando deployment..."
-	kubectl rollout restart deployment/vehicle-resale-api-deployment -n vehicle-resale
-	kubectl rollout status deployment/vehicle-resale-api-deployment -n vehicle-resale
+	kubectl rollout restart deployment/vehicle-catalog-api-deployment -n vehicle-catalog
+	kubectl rollout status deployment/vehicle-catalog-api-deployment -n vehicle-catalog
 	@echo "✅ Redeploy concluido!"
 	@echo "🌐 API disponivel via: make k8s-port-forward"
 
 ## 🔍 Verificar recursos em todos os namespaces
 k8s-check-all:
 	@echo "🔍 Verificando recursos em todos os namespaces..."
-	kubectl get all --all-namespaces | grep vehicle-resale || echo "❌ Nenhum recurso encontrado"
+	kubectl get all --all-namespaces | grep vehicle-catalog || echo "❌ Nenhum recurso encontrado"
 	@echo ""
 	@echo "📋 Namespaces disponiveis:"
 	kubectl get namespaces
@@ -230,15 +230,15 @@ k8s-full-deploy:
 	@echo "🎯 1/4 - Iniciando Minikube..."
 	minikube start --driver=docker
 	@echo "🔧 2/4 - Configurando Docker do Minikube..."
-	@powershell -Command "minikube docker-env | Invoke-Expression; docker build -t vehicle-resale-api:latest ."
+	@powershell -Command "minikube docker-env | Invoke-Expression; docker build -t vehicle-catalog-api:latest ."
 	@echo "🚀 3/4 - Fazendo deploy da aplicacao..."
 	kubectl apply -f k8s/
 	@echo "⏳ Aguardando pods ficarem prontos..."
-	kubectl wait --for=condition=ready pod -l app=vehicle-resale-api -n vehicle-resale --timeout=300s
+	kubectl wait --for=condition=ready pod -l app=vehicle-catalog-api -n vehicle-catalog --timeout=300s
 	@echo "🌐 4/4 - Configurando port-forward na porta 9000..."
 	@echo ""
 	@echo "✅ Setup Minikube completo finalizado!"
-	kubectl port-forward -n vehicle-resale service/vehicle-resale-api-service 9000:80
+	kubectl port-forward -n vehicle-catalog service/vehicle-catalog-api-service 9000:80
 	@echo "🔗 API disponivel em: http://localhost:9000/swagger/index.html"
 	@echo "⏹️ Para parar o port-forward: Ctrl+C"
 
@@ -248,7 +248,7 @@ k8s-full-clean:
 	@echo "🗑️ 1/4 - Removendo aplicacao do Kubernetes..."
 	kubectl delete -f k8s/ || echo "⚠️ Alguns recursos ja foram removidos"
 	@echo "🗑️ 2/4 - Removendo namespace..."
-	kubectl delete namespace vehicle-resale || echo "⚠️ Namespace ja foi removido"
+	kubectl delete namespace vehicle-catalog || echo "⚠️ Namespace ja foi removido"
 	@echo "🗑️ 3/4 - Parando Minikube..."
 	minikube stop || echo "⚠️ Minikube ja estava parado"
 	@echo "🗑️ 4/4 - Removendo cluster Minikube..."
@@ -265,7 +265,7 @@ k8s-full-clean:
 ## ℹ️  Mostra informações do ambiente
 info: 
 	@echo "ℹ️ Informações do Ambiente:"
-	@echo "📁 Projeto: Vehicle Resale API"
+	@echo "📁 Projeto: Vehicle Catalog API"
 	@echo "🔧 .NET Version: $$(dotnet --version)"
 	@echo "🐳 Docker Version: $$(docker --version)"
 	@echo "☸️ Kubectl Version: $$(kubectl version --client --short 2>/dev/null || echo 'Kubectl não instalado')"
