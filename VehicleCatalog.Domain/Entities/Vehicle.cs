@@ -136,12 +136,13 @@ public class Vehicle
         UpdatedAt = DateTime.UtcNow;
     }
 
-    public void UpdatePaymentStatus(PaymentStatus status)
+    public void UpdatePaymentStatus(string paymentCode, PaymentStatus status)
     {
         if (!IsSold)
             throw new InvalidOperationException("Veículo não está vendido");
 
         PaymentStatus = status;
+        PaymentCode = paymentCode;
         
         // Se o pagamento foi cancelado, reverter a venda
         if (status == PaymentStatus.Cancelled)

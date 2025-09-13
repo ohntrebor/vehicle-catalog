@@ -175,7 +175,7 @@ public abstract class TestBase
         var vehicle = await context.Vehicles.FirstOrDefaultAsync(v => v.PaymentCode == paymentCode);
         if (vehicle != null)
         {
-            vehicle.UpdatePaymentStatus(status);
+            vehicle.UpdatePaymentStatus(paymentCode, status);
             await context.SaveChangesAsync();
             _logger.LogInformation($"🔗 Webhook simulado: {paymentCode} → {status}");
         }

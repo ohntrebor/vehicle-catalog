@@ -292,7 +292,7 @@ public class VehicleTests : TestBase
         // Act - Simular webhook de confirmação
         var vehicleToUpdate = await context.Vehicles
             .FirstAsync(v => v.PaymentCode == paymentCode);
-        vehicleToUpdate.UpdatePaymentStatus(PaymentStatus.Confirmed);
+        vehicleToUpdate.UpdatePaymentStatus("51fg51dg5fdfg1", PaymentStatus.Confirmed);
         await context.SaveChangesAsync();
 
         // Assert
@@ -327,7 +327,7 @@ public class VehicleTests : TestBase
         // Act - Simular webhook de cancelamento
         var vehicleToUpdate = await context.Vehicles
             .FirstAsync(v => v.PaymentCode == paymentCode);
-        vehicleToUpdate.UpdatePaymentStatus(PaymentStatus.Cancelled);
+        vehicleToUpdate.UpdatePaymentStatus("51fg51dg5fdfg1", PaymentStatus.Cancelled);
         await context.SaveChangesAsync();
 
         // Assert

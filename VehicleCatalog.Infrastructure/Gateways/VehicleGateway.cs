@@ -25,11 +25,6 @@ public class VehicleGateway(IUnitOfWork unitOfWork) : IVehicleGateway
         return await unitOfWork.Vehicles.GetByIdAsync(id);
     }
 
-    public async Task<Vehicle?> FindByPaymentCodeAsync(string paymentCode)
-    {
-        return await unitOfWork.Vehicles.GetByPaymentCodeAsync(paymentCode);
-    }
-
     public async Task<IEnumerable<Vehicle>> FindAvailableVehiclesAsync()
     {
         var vehicles = await unitOfWork.Vehicles.GetAvailableVehiclesAsync();

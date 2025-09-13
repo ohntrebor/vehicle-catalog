@@ -12,10 +12,10 @@ public class VehicleRepository(ApplicationDbContext context) : IVehicleRepositor
         return await context.Vehicles.FindAsync(id);
     }
 
-    public async Task<Vehicle?> GetByPaymentCodeAsync(string paymentCode)
+    public async Task<Vehicle?> GetByPaymentCodeAsync(Guid vehicleId)
     {
         return await context.Vehicles
-            .FirstOrDefaultAsync(v => v.PaymentCode == paymentCode);
+            .FirstOrDefaultAsync(v => v.Id == vehicleId);
     }
 
     public async Task<IEnumerable<Vehicle>> GetAvailableVehiclesAsync()

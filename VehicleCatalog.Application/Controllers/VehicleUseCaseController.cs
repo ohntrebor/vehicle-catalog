@@ -38,7 +38,7 @@ public class VehicleUseCaseController(IVehicleGateway gateway, IVehiclePresenter
     public async Task<bool> UpdatePaymentStatus(PaymentWebhookDto dto)
     {
         var useCase = new UpdatePaymentStatusUseCase(gateway);
-        return await useCase.ExecuteAsync(dto.PaymentCode, dto.Status);
+        return await useCase.ExecuteAsync(dto.VehicleId, dto.PaymentCode, dto.Status);
     }
     
     public async Task<bool> DeleteVehicle(Guid id)

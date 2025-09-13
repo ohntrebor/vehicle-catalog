@@ -40,14 +40,9 @@ public class UpdateVehicleDto : CreateVehicleDto
     public Guid Id { get; set; }
 }
 
-public class RegisterSaleDto
-{
-    public Guid VehicleId { get; set; }
-    public string BuyerCpf { get; set; }
-}
-
 public class PaymentWebhookDto
 {
+    public Guid VehicleId { get; set; }
     public string PaymentCode { get; set; }
     public string Status { get; set; }
 }

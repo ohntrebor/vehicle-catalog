@@ -8,7 +8,7 @@ namespace VehicleCatalog.Domain.Interfaces;
 public interface IVehicleRepository
 {
     Task<Vehicle?> GetByIdAsync(Guid id);
-    Task<Vehicle?> GetByPaymentCodeAsync(string paymentCode);
+    Task<Vehicle?> GetByPaymentCodeAsync(Guid vehicleId);
     Task<IEnumerable<Vehicle>> GetAvailableVehiclesAsync();
     Task<IEnumerable<Vehicle>> GetSoldVehiclesAsync();
     Task<Vehicle> AddAsync(Vehicle vehicle);
