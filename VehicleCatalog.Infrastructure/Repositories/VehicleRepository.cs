@@ -28,7 +28,7 @@ public class VehicleRepository(ApplicationDbContext context) : IVehicleRepositor
     public async Task<IEnumerable<Vehicle>> GetSoldVehiclesAsync()
     {
         return await context.Vehicles
-            .Where(v => v.IsSold)
+            .Where(v => v.IsSold == true)
             .ToListAsync();
     }
 
@@ -47,5 +47,11 @@ public class VehicleRepository(ApplicationDbContext context) : IVehicleRepositor
     public async Task<bool> ExistsAsync(Guid id)
     {
         return await context.Vehicles.AnyAsync(v => v.Id == id);
+    }
+    
+    public async Task DeleteAsync(Vehicle vehicle)
+    {
+        context.Vehicles.Remove(vehicle);
+        await Task.CompletedTask;
     }
 }

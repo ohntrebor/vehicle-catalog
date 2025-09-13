@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using VehicleCatalog.Infrastructure.Data;
 using VehicleCatalog.Domain.Interfaces;
 using VehicleCatalog.Infrastructure.Repositories;
-using VehicleCatalog.Application.Mappings;
 using System.Reflection;
 using VehicleCatalog.Domain.Entities;
 
@@ -39,9 +38,7 @@ public abstract class TestBase
         // Repositories e Unit of Work
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IVehicleRepository, VehicleRepository>();
-
-        // AutoMapper
-        services.AddAutoMapper(typeof(MappingProfile).Assembly);
+        
 
         // MediatR
         services.AddMediatR(cfg =>

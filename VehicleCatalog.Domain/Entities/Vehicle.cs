@@ -91,7 +91,7 @@ public class Vehicle
         PaymentStatus = PaymentStatus.Pending;
     }
 
-    public Vehicle(string brand, string model, int year, string color, decimal price)
+    public Vehicle(string brand, string model, int year, string color, decimal price, bool isSold = false)
     {
         Id = Guid.NewGuid();
         Brand = brand;
@@ -99,7 +99,7 @@ public class Vehicle
         Year = year;
         Color = color;
         Price = price;
-        IsSold = false;
+        IsSold = isSold;
         CreatedAt = DateTime.UtcNow;
         PaymentStatus = PaymentStatus.Pending;
     }

@@ -23,6 +23,7 @@ public class VehicleSaleDto : VehicleDto
     public DateTime? SaleDate { get; set; }
     public string? PaymentStatus { get; set; }
     public string? PaymentCode { get; set; }
+    public DateTime? SoldAt { get; set; }
 }
 
 public class CreateVehicleDto

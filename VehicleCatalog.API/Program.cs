@@ -1,15 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
-using VehicleCatalog.Application.Mappings;
-using VehicleCatalog.Domain.Interfaces;
-using VehicleCatalog.Application.Validators;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using FluentValidation.AspNetCore;
+using VehicleCatalog.Domain.Interfaces;
 using VehicleCatalog.Infrastructure.Data;
 using VehicleCatalog.Infrastructure.Repositories;
 using VehicleCatalog.Infrastructure.Seeders;
+using VehicleCatalog.Application.Gateways;
+using VehicleCatalog.Infrastructure.Gateways;
+using VehicleCatalog.Application.Presenters;
+using VehicleCatalog.Application.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,18 +18,13 @@ var builder = WebApplication.CreateBuilder(args);
 // CONFIGURAÇÃO DOS SERVIÇOS
 // ===========================================
 
-// 1. Controllers com validação
+// 1. Controllers (SEM FluentValidation)
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
         options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
-    })
-    .AddFluentValidation(fv =>
-    {
-        fv.RegisterValidatorsFromAssemblyContaining<CreateVehicleValidator>();
-        fv.ImplicitlyValidateChildProperties = true;
     });
 
 // 2. Entity Framework
@@ -56,19 +52,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
 
-// 4. AutoMapper
-builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
+// 4. Clean Architecture - NOVOS SERVIÇOS
+builder.Services.AddScoped<IVehicleGateway, VehicleGateway>();
+builder.Services.AddScoped<IVehiclePresenter, VehiclePresenter>();
+builder.Services.AddScoped<VehicleUseCaseController>();
 
-// 5. MediatR
-builder.Services.AddMediatR(cfg =>
-{
-    cfg.RegisterServicesFromAssembly(Assembly.Load("VehicleCatalog.Application"));
-});
-
-// 6. Health Checks Simples
+// 5. Health Checks Simples
 builder.Services.AddHealthChecks();
 
-// 7. Swagger
+// 6. Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -88,7 +80,7 @@ builder.Services.AddSwaggerGen(c =>
     }
 });
 
-// 8. CORS
+// 7. CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
