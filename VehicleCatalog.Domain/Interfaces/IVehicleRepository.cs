@@ -13,5 +13,7 @@ public interface IVehicleRepository
     Task<IEnumerable<Vehicle>> GetSoldVehiclesAsync();
     Task<Vehicle> AddAsync(Vehicle vehicle);
     Task UpdateAsync(Vehicle vehicle);
-    Task<bool> ExistsAsync(Guid id);
+    Task DeleteAsync(Vehicle vehicle);
+
+    
 }
