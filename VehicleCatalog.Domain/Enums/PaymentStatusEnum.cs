@@ -5,20 +5,26 @@ namespace VehicleCatalog.Domain.Enums;
 public enum PaymentStatus
 {
     /// <summary>
-    /// Pendente
+    /// Pagamento aguardando processamento ou ação do cliente.
     /// </summary>
-    [Description("Pendente")]
+    [Description("Aguardando")]
     Pending = 0,
-    
+
     /// <summary>
-    /// Confirmado
+    /// Pagamento foi processado com sucesso e confirmado.
     /// </summary>
-    [Description("Confirmado")]
-    Confirmed = 1,
-    
+    [Description("Pago")]
+    Paid = 1,
+
     /// <summary>
-    /// Cancelado
+    /// Pagamento foi cancelado pelo cliente ou sistema antes da conclusão.
     /// </summary>
     [Description("Cancelado")]
-    Cancelled = 2
+    Cancelled = 2,
+
+    /// <summary>
+    /// Falha no processamento do pagamento devido a fundos insuficientes, problemas técnicos ou outros erros.
+    /// </summary>
+    [Description("Falhou")]
+    Failed = 3
 }

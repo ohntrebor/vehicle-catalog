@@ -138,8 +138,6 @@ public class Vehicle
 
     public void UpdatePaymentStatus(string paymentCode, PaymentStatus status)
     {
-        if (!IsSold)
-            throw new InvalidOperationException("Veículo não está vendido");
 
         PaymentStatus = status;
         PaymentCode = paymentCode;
@@ -151,6 +149,12 @@ public class Vehicle
             BuyerCpf = null;
             SaleDate = null;
             PaymentCode = null;
+        }
+
+        if(status == PaymentStatus.Paid)
+        {
+            SaleDate = DateTime.UtcNow;
+            IsSold = true;
         }
         
         UpdatedAt = DateTime.UtcNow;
