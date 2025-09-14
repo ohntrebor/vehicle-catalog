@@ -126,6 +126,33 @@ public class VehiclesController(VehicleUseCaseController useCaseController) : Co
     }
 
     /// <summary>
+    /// Busca um veículo específico por ID
+    /// </summary>
+    /// <param name="id">ID do veículo</param>
+    /// <returns>Dados do veículo encontrado</returns>
+    /// <response code="200">Veículo encontrado com sucesso</response>
+    /// <response code="404">Veículo não encontrado</response>
+    [HttpGet("{id:guid}")]
+    [ProducesResponseType(typeof(VehicleDto), 200)]
+    [ProducesResponseType(404)]
+    public async Task<IActionResult> GetVehicleById(Guid id)
+    {
+        try
+        {
+            var result = await useCaseController.GetVehicleById(id);
+
+            if (result == null)
+                return NotFound(new { message = "Veículo não encontrado" });
+
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return NotFound(new { message = "Veículo não encontrado" });
+        }
+    }
+
+    /// <summary>
     /// Webhook para atualização do status de pagamento de vendas
     /// </summary>
     /// <param name="dto">Dados do webhook contendo código de pagamento e status</param>

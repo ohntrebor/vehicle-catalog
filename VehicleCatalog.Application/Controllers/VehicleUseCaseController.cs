@@ -46,4 +46,15 @@ public class VehicleUseCaseController(IVehicleGateway gateway, IVehiclePresenter
         var useCase = new DeleteVehicleUseCase(gateway);
         return await useCase.ExecuteAsync(id);
     }
+
+    public async Task<VehicleDto?> GetVehicleById(Guid vehicleId)
+    {
+        var useCase = new GetVehicleByIdUseCase(gateway);
+        var vehicle = await useCase.ExecuteAsync(vehicleId);
+
+        if (vehicle == null)
+            return null;
+
+        return presenter.PresentVehicle(vehicle);
+    }
 }
