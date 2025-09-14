@@ -292,13 +292,13 @@ public class VehicleTests : TestBase
         // Act - Simular webhook de confirmação
         var vehicleToUpdate = await context.Vehicles
             .FirstAsync(v => v.PaymentCode == paymentCode);
-        vehicleToUpdate.UpdatePaymentStatus("51fg51dg5fdfg1", PaymentStatus.Confirmed);
+        vehicleToUpdate.UpdatePaymentStatus("51fg51dg5fdfg1", PaymentStatus.Paid);
         await context.SaveChangesAsync();
 
         // Assert
         var confirmedVehicle = await context.Vehicles.FindAsync(vehicle.Id);
         confirmedVehicle.Should().NotBeNull();
-        confirmedVehicle!.PaymentStatus.Should().Be(PaymentStatus.Confirmed);
+        confirmedVehicle!.PaymentStatus.Should().Be(PaymentStatus.Paid);
         confirmedVehicle.IsSold.Should().BeTrue();
         confirmedVehicle.BuyerCpf.Should().Be("55555555555");
 

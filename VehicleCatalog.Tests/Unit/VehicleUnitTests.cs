@@ -239,10 +239,10 @@ public class VehicleUnitTests
         vehicle.RegisterSale("33333333333", "PAY-333");
 
         // Act
-        vehicle.UpdatePaymentStatus("g51dg5fdfg1", PaymentStatus.Confirmed);
+        vehicle.UpdatePaymentStatus("g51dg5fdfg1", PaymentStatus.Paid);
 
         // Assert
-        vehicle.PaymentStatus.Should().Be(PaymentStatus.Confirmed);
+        vehicle.PaymentStatus.Should().Be(PaymentStatus.Paid);
         vehicle.IsSold.Should().BeTrue(); // Deve continuar vendido
         vehicle.BuyerCpf.Should().Be("33333333333"); // Dados de venda mantidos
         vehicle.UpdatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(5));
@@ -292,8 +292,8 @@ public class VehicleUnitTests
         vehicle.IsSold.Should().BeTrue();
 
         // Act & Assert - Confirmar pagamento
-        vehicle.UpdatePaymentStatus("51fg51dg5fdfg1", PaymentStatus.Confirmed);
-        vehicle.PaymentStatus.Should().Be(PaymentStatus.Confirmed);
+        vehicle.UpdatePaymentStatus("51fg51dg5fdfg1", PaymentStatus.Paid);
+        vehicle.PaymentStatus.Should().Be(PaymentStatus.Paid);
         vehicle.IsSold.Should().BeTrue();
 
         // Act & Assert - Cancelar pagamento
