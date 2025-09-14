@@ -14,7 +14,10 @@ public class VehiclePresenter : IVehiclePresenter
             Model = vehicle.Model,
             Year = vehicle.Year,
             Color = vehicle.Color,
-            Price = vehicle.Price
+            Price = vehicle.Price,
+            IsSold = vehicle.IsSold,
+            CreatedAt = vehicle.CreatedAt,
+            UpdatedAt = vehicle.UpdatedAt
         };
     }
 
