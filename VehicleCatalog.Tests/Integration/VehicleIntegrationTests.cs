@@ -7,7 +7,7 @@ using VehicleCatalog.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using VehicleCatalog.Tests.Base;
 
-namespace VehicleResale.Tests.IntegrationTests;
+namespace VehicleCatalog.Tests.IntegrationTests;
 
 /// <summary>
 /// Testes de integração para funcionalidades que envolvem persistência de dados

@@ -1,7 +1,7 @@
-﻿# Vehicle Resale API Deployment Script for PowerShell
+﻿# Vehicle Catalog API Deployment Script for PowerShell
 # Usage: .\deploy.ps1
 
-Write-Host "🚀 Starting Vehicle Resale API Deployment" -ForegroundColor Green
+Write-Host "🚀 Starting Vehicle Catalog API Deployment" -ForegroundColor Green
 
 # Verificar se Makefile existe
 if (Test-Path "Makefile") {
@@ -32,7 +32,7 @@ if (Test-Path "Makefile") {
             make k8s-status
             
             Write-Host "📊 To access the API:" -ForegroundColor Cyan
-            Write-Host "kubectl port-forward -n vehicle-resale service/vehicle-resale-api-service 9000:80"
+            Write-Host "kubectl port-forward -n vehicle-catalog service/vehicle-catalog-api-service 9000:80"
         }
     }
     catch {
@@ -77,5 +77,5 @@ else {
 }
 
 Write-Host ""
-Write-Host "🎉 Vehicle Resale API deployment finished!" -ForegroundColor Green
+Write-Host "🎉 Vehicle Catalog API deployment finished!" -ForegroundColor Green
 Write-Host "🔗 Repository: https://github.com/ohntrebor/vehicle-resale" -ForegroundColor Cyan

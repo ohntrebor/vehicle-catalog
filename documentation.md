@@ -1,4 +1,4 @@
-# 🚗 Vehicle Resale API
+# 🚗 Vehicle Catalog API
 ## Clean Architecture & Kubernetes Implementation
 
 ---
@@ -10,7 +10,7 @@
 ## 🔗 Links Principais
 
 ### 📂 Repositório GitHub
-**https://github.com/ohntrebor/vehicle-resale**
+**https://github.com/ohntrebor/vehicle-catalog**
 
 ### 🎥 Vídeo Demonstrativo
 **https://youtu.be/ehMrxDCCR5k (15 min)**
@@ -53,10 +53,10 @@ vehicle-resale/
 ├── Dockerfile                   # Build da aplicação
 ├── docker-compose.yml           # Orquestração local
 ├── Makefile                     # Automação de comandos
-├── VehicleResale.API/          # Controllers & Config
-├── VehicleResale.Application/  # Use Cases & DTOs
-├── VehicleResale.Domain/       # Entidades & Interfaces
-├── VehicleResale.Infrastructure/ # EF Core & Repositories
+├── VehicleCatalog.API/          # Controllers & Config
+├── VehicleCatalog.Application/  # Use Cases & DTOs
+├── VehicleCatalog.Domain/       # Entidades & Interfaces
+├── VehicleCatalog.Infrastructure/ # EF Core & Repositories
 ├── k8s/                         # Manifestos Kubernetes
 │   ├── namespace.yaml              # Namespace
 │   ├── configmap.yaml              # Configurações

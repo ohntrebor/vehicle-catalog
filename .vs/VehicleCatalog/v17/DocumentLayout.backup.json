@@ -1,0 +1,156 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Bob\\OneDrive\\Documentos\\GitHub\\vehicle-catalog\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A45837C8-A9E9-47A2-B366-FBE68E892D50}|VehicleCatalog.Application\\VehicleCatalog.Application.csproj|c:\\users\\bob\\onedrive\\documentos\\github\\vehicle-catalog\\vehiclecatalog.application\\usecases\\getvehiclebyidusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A45837C8-A9E9-47A2-B366-FBE68E892D50}|VehicleCatalog.Application\\VehicleCatalog.Application.csproj|solutionrelative:vehiclecatalog.application\\usecases\\getvehiclebyidusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0276F17F-E035-48AF-8301-395328080947}|VehicleCatalog.Infrastructure\\VehicleCatalog.Infrastructure.csproj|c:\\users\\bob\\onedrive\\documentos\\github\\vehicle-catalog\\vehiclecatalog.infrastructure\\gateways\\vehiclegateway.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0276F17F-E035-48AF-8301-395328080947}|VehicleCatalog.Infrastructure\\VehicleCatalog.Infrastructure.csproj|solutionrelative:vehiclecatalog.infrastructure\\gateways\\vehiclegateway.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{70B0A740-4F07-4C1A-AD60-A45F606D9504}|VehicleCatalog.Tests\\VehicleCatalog.Tests.csproj|c:\\users\\bob\\onedrive\\documentos\\github\\vehicle-catalog\\vehiclecatalog.tests\\vehiclecatalog.tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{70B0A740-4F07-4C1A-AD60-A45F606D9504}|VehicleCatalog.Tests\\VehicleCatalog.Tests.csproj|solutionrelative:vehiclecatalog.tests\\vehiclecatalog.tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A45837C8-A9E9-47A2-B366-FBE68E892D50}|VehicleCatalog.Application\\VehicleCatalog.Application.csproj|c:\\users\\bob\\onedrive\\documentos\\github\\vehicle-catalog\\vehiclecatalog.application\\gateways\\ivehiclegateway.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A45837C8-A9E9-47A2-B366-FBE68E892D50}|VehicleCatalog.Application\\VehicleCatalog.Application.csproj|solutionrelative:vehiclecatalog.application\\gateways\\ivehiclegateway.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A45837C8-A9E9-47A2-B366-FBE68E892D50}|VehicleCatalog.Application\\VehicleCatalog.Application.csproj|c:\\users\\bob\\onedrive\\documentos\\github\\vehicle-catalog\\vehiclecatalog.application\\controllers\\vehicleusecasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A45837C8-A9E9-47A2-B366-FBE68E892D50}|VehicleCatalog.Application\\VehicleCatalog.Application.csproj|solutionrelative:vehiclecatalog.application\\controllers\\vehicleusecasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A395F881-957D-4E25-A55B-A56ACC655F63}|VehicleCatalog.API\\VehicleCatalog.API.csproj|c:\\users\\bob\\onedrive\\documentos\\github\\vehicle-catalog\\vehiclecatalog.api\\controllers\\vehiclescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A395F881-957D-4E25-A55B-A56ACC655F63}|VehicleCatalog.API\\VehicleCatalog.API.csproj|solutionrelative:vehiclecatalog.api\\controllers\\vehiclescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Bob\\OneDrive\\Documentos\\GitHub\\vehicle-catalog\\VehicleCatalog.API\\VehicleCatalog.API.csproj.user||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:VehicleCatalog.API\\VehicleCatalog.API.csproj.user||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A395F881-957D-4E25-A55B-A56ACC655F63}|VehicleCatalog.API\\VehicleCatalog.API.csproj|c:\\users\\bob\\onedrive\\documentos\\github\\vehicle-catalog\\vehiclecatalog.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A395F881-957D-4E25-A55B-A56ACC655F63}|VehicleCatalog.API\\VehicleCatalog.API.csproj|solutionrelative:vehiclecatalog.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "VehicleCatalog.Tests",
+              "DocumentMoniker": "C:\\Users\\Bob\\OneDrive\\Documentos\\GitHub\\vehicle-catalog\\VehicleCatalog.Tests\\VehicleCatalog.Tests.csproj",
+              "RelativeDocumentMoniker": "VehicleCatalog.Tests\\VehicleCatalog.Tests.csproj",
+              "ToolTip": "C:\\Users\\Bob\\OneDrive\\Documentos\\GitHub\\vehicle-catalog\\VehicleCatalog.Tests\\VehicleCatalog.Tests.csproj",
+              "RelativeToolTip": "VehicleCatalog.Tests\\VehicleCatalog.Tests.csproj",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-09-14T05:39:29.027Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "VehicleGateway.cs",
+              "DocumentMoniker": "C:\\Users\\Bob\\OneDrive\\Documentos\\GitHub\\vehicle-catalog\\VehicleCatalog.Infrastructure\\Gateways\\VehicleGateway.cs",
+              "RelativeDocumentMoniker": "VehicleCatalog.Infrastructure\\Gateways\\VehicleGateway.cs",
+              "ToolTip": "C:\\Users\\Bob\\OneDrive\\Documentos\\GitHub\\vehicle-catalog\\VehicleCatalog.Infrastructure\\Gateways\\VehicleGateway.cs",
+              "RelativeToolTip": "VehicleCatalog.Infrastructure\\Gateways\\VehicleGateway.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAewBYAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-14T05:35:55.651Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IVehicleGateway.cs",
+              "DocumentMoniker": "C:\\Users\\Bob\\OneDrive\\Documentos\\GitHub\\vehicle-catalog\\VehicleCatalog.Application\\Gateways\\IVehicleGateway.cs",
+              "RelativeDocumentMoniker": "VehicleCatalog.Application\\Gateways\\IVehicleGateway.cs",
+              "ToolTip": "C:\\Users\\Bob\\OneDrive\\Documentos\\GitHub\\vehicle-catalog\\VehicleCatalog.Application\\Gateways\\IVehicleGateway.cs*",
+              "RelativeToolTip": "VehicleCatalog.Application\\Gateways\\IVehicleGateway.cs*",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAQwAsAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-14T05:35:35.493Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GetVehicleByIdUseCase.cs",
+              "DocumentMoniker": "C:\\Users\\Bob\\OneDrive\\Documentos\\GitHub\\vehicle-catalog\\VehicleCatalog.Application\\UseCases\\GetVehicleByIdUseCase.cs",
+              "RelativeDocumentMoniker": "VehicleCatalog.Application\\UseCases\\GetVehicleByIdUseCase.cs",
+              "ToolTip": "C:\\Users\\Bob\\OneDrive\\Documentos\\GitHub\\vehicle-catalog\\VehicleCatalog.Application\\UseCases\\GetVehicleByIdUseCase.cs*",
+              "RelativeToolTip": "VehicleCatalog.Application\\UseCases\\GetVehicleByIdUseCase.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-14T05:35:24.735Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "VehicleUseCaseController.cs",
+              "DocumentMoniker": "C:\\Users\\Bob\\OneDrive\\Documentos\\GitHub\\vehicle-catalog\\VehicleCatalog.Application\\Controllers\\VehicleUseCaseController.cs",
+              "RelativeDocumentMoniker": "VehicleCatalog.Application\\Controllers\\VehicleUseCaseController.cs",
+              "ToolTip": "C:\\Users\\Bob\\OneDrive\\Documentos\\GitHub\\vehicle-catalog\\VehicleCatalog.Application\\Controllers\\VehicleUseCaseController.cs",
+              "RelativeToolTip": "VehicleCatalog.Application\\Controllers\\VehicleUseCaseController.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAowC0AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-14T05:34:21.056Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "VehicleCatalog.API.csproj.user",
+              "DocumentMoniker": "C:\\Users\\Bob\\OneDrive\\Documentos\\GitHub\\vehicle-catalog\\VehicleCatalog.API\\VehicleCatalog.API.csproj.user",
+              "RelativeDocumentMoniker": "VehicleCatalog.API\\VehicleCatalog.API.csproj.user",
+              "ToolTip": "C:\\Users\\Bob\\OneDrive\\Documentos\\GitHub\\vehicle-catalog\\VehicleCatalog.API\\VehicleCatalog.API.csproj.user",
+              "RelativeToolTip": "VehicleCatalog.API\\VehicleCatalog.API.csproj.user",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003464|",
+              "WhenOpened": "2025-09-14T05:05:21.943Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\Bob\\OneDrive\\Documentos\\GitHub\\vehicle-catalog\\VehicleCatalog.API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "VehicleCatalog.API\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\Bob\\OneDrive\\Documentos\\GitHub\\vehicle-catalog\\VehicleCatalog.API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "VehicleCatalog.API\\Properties\\launchSettings.json",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABcAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-14T04:26:44.903Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "VehiclesController.cs",
+              "DocumentMoniker": "C:\\Users\\Bob\\OneDrive\\Documentos\\GitHub\\vehicle-catalog\\VehicleCatalog.API\\Controllers\\VehiclesController.cs",
+              "RelativeDocumentMoniker": "VehicleCatalog.API\\Controllers\\VehiclesController.cs",
+              "ToolTip": "C:\\Users\\Bob\\OneDrive\\Documentos\\GitHub\\vehicle-catalog\\VehicleCatalog.API\\Controllers\\VehiclesController.cs",
+              "RelativeToolTip": "VehicleCatalog.API\\Controllers\\VehiclesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-14T02:33:44.442Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
