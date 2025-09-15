@@ -44,7 +44,89 @@ services:
       start_period: 30s    # Aguarda 30s antes de começar
 
   # ===========================================
-  # SERVIÇO: API .NET 8
+  # SERVIÇO: MongoDB Database
+  # ===========================================
+  mongodb:
+    # Imagem oficial do MongoDB 7
+    image: mongo:7-jammy
+    
+    # Nome do container para fácil identificação
+    container_name: vehicle-sales-mongodb
+    
+    # Variáveis de ambiente para configurar o MongoDB
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin         # Usuário root do MongoDB
+      - MONGO_INITDB_ROOT_PASSWORD=ra02xbo-P     # Senha do usuário root
+      - MONGO_INITDB_DATABASE=vehicle_sales_db   # Nome do banco de dados inicial
+    
+    # Mapeamento de portas HOST:CONTAINER
+    ports:
+      - "27017:27017"                            # Porta padrão do MongoDB
+    
+    # Volume para persistir dados do banco
+    volumes:
+      - mongodb-data:/data/db                    # Dados persistem após restart
+    
+    # Rede interna para comunicação entre containers
+    networks:
+      - vehicle-catalog-network
+    
+    # Healthcheck para verificar se o banco está pronto
+    healthcheck:
+      # Comando para testar conexão com o banco
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s        # Verifica a cada 10 segundos
+      timeout: 5s          # Timeout de 5 segundos
+      retries: 10          # Tenta 10 vezes
+      start_period: 30s    # Aguarda 30s antes de começar
+
+  # ===========================================
+  # SERVIÇO: Vehicle Sales API
+  # ===========================================
+  vehicle-sales:
+    # Imagem do GitHub Container Registry
+    image: ghcr.io/ohntrebor/vehicle-sales:latest
+    
+    # Nome do container
+    container_name: vehicle-sales-api
+    
+    # Variáveis de ambiente para a aplicação
+    environment:
+      # Ambiente de desenvolvimento (mostra erros detalhados)
+      - ASPNETCORE_ENVIRONMENT=Development
+      
+      # URL que a aplicação vai escutar
+      - ASPNETCORE_URLS=http://+:80
+      
+      # String de conexão MongoDB - usa nome do serviço 'mongodb' como host
+      - ConnectionStrings__MongoDb=mongodb://admin:ra02xbo-P@mongodb:27017
+      
+      # Nome do database MongoDB
+      - MongoDbSettings__DatabaseName=vehicle_sales_db
+      
+      # URL da API externa do VehicleCatalog - usa nome do serviço para comunicação interna
+      - ExternalServices__VehicleCatalogApi=http://api:80/api
+    
+    # Mapeamento de portas
+    ports:
+      - "5001:80"          # Acesse a API em http://localhost:5001
+    
+    # Dependências - só inicia após o MongoDB estar saudável e catalog estar disponível
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      api:
+        condition: service_started
+    
+    # Mesma rede para comunicação interna
+    networks:
+      - vehicle-catalog-network
+    
+    # Política de restart
+    restart: unless-stopped    # Reinicia automaticamente se cair
+
+  # ===========================================
+  # SERVIÇO: Vehicle Catalog API
   # ===========================================
   api:
     # Build da imagem usando o Dockerfile local
@@ -63,8 +145,11 @@ services:
       # URL que a aplicação vai escutar
       - ASPNETCORE_URLS=http://+:80
       
-      # String de conexão - note que usa 'postgres' como host (nome do serviço)
+      # String de conexão PostgreSQL - usa nome do serviço 'postgres' como host
       - ConnectionStrings__DefaultConnection=Host=postgres;Database=vehicle-db;Username=admin;Password=ra02xbo-P;Port=5432
+      
+      # URL da API externa do VehicleSales - usa nome do serviço para comunicação interna
+      - ExternalServices__VehicleSalesApi=http://vehicle-sales:80/api
     
     # Mapeamento de portas
     ports:
@@ -82,14 +167,47 @@ services:
     # Política de restart
     restart: unless-stopped    # Reinicia automaticamente se cair
 
+  # ===========================================
+  # SERVIÇO: Mongo Express
+  # ===========================================
+  mongo-express:
+    # Imagem oficial do Mongo Express
+    image: mongo-express:1.0-20-alpine3.18
+    
+    # Nome do container
+    container_name: vehicle-sales-mongo-express
+    
+    # Variáveis de ambiente para configurar o Mongo Express
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin   # Usuário do MongoDB
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=ra02xbo-P # Senha do MongoDB
+      - ME_CONFIG_MONGODB_URL=mongodb://admin:ra02xbo-P@mongodb:27017/ # URL de conexão
+      - ME_CONFIG_BASICAUTH=false               # Desabilita autenticação básica
+    
+    # Mapeamento de portas
+    ports:
+      - "8081:8081"        # Acesse em http://localhost:8081
+    
+    # Dependências - só inicia após o MongoDB estar pronto
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    
+    # Mesma rede para comunicação
+    networks:
+      - vehicle-catalog-network
+    
+    # Política de restart
+    restart: unless-stopped
+
 # ===========================================
 # VOLUMES - Armazenamento Persistente
 # ===========================================
 volumes:
   postgres-data:               # Volume nomeado para dados do PostgreSQL
     driver: local              # Driver local do Docker
-  pgadmin-data:                # Volume para configurações do pgAdmin
-    driver: local
+  mongodb-data:                # Volume nomeado para dados do MongoDB
+    driver: local              # Driver local do Docker
 
 # ===========================================
 # NETWORKS - Rede para Comunicação
