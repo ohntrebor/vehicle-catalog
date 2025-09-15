@@ -1,4 +1,5 @@
-﻿using VehicleCatalog.Application.Gateways;
+﻿using Microsoft.EntityFrameworkCore;
+using VehicleCatalog.Application.Gateways;
 using VehicleCatalog.Domain.Entities;
 using VehicleCatalog.Domain.Interfaces;
 
@@ -50,5 +51,21 @@ public class VehicleGateway(IUnitOfWork unitOfWork) : IVehicleGateway
         await unitOfWork.SaveChangesAsync();
         return true;
         
+    }
+    
+    public async Task<IEnumerable<Vehicle>> SearchVehiclesAsync(
+        string? brand = null,
+        string? model = null,
+        decimal? minPrice = null,
+        decimal? maxPrice = null,
+        int? year = null,
+        int? minYear = null,
+        int? maxYear = null,
+        string? color = null,
+        bool? isAvailable = null)
+    {
+        // delegamos para o repository
+        return await unitOfWork.Vehicles.SearchAsync(
+            brand, model, minPrice, maxPrice, year, minYear, maxYear, color, isAvailable);
     }
 }

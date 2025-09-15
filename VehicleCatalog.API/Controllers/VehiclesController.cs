@@ -173,4 +173,44 @@ public class VehiclesController(VehicleUseCaseController useCaseController) : Co
         
         return NotFound(new { message = "Código de pagamento não encontrado" });
     }
+    
+    /// <summary>
+    /// Busca veículos por filtros específicos
+    /// </summary>
+    /// <param name="searchDto">Filtros de busca</param>
+    /// <returns>Lista filtrada de veículos</returns>
+    /// <response code="200">Lista filtrada retornada com sucesso</response>
+    /// <response code="400">Filtros inválidos</response>
+    // ADICIONE este método no final da classe:
+    [HttpGet("search")]
+    [ProducesResponseType(typeof(IEnumerable<VehicleDto>), 200)]
+    [ProducesResponseType(400)]
+    public async Task<IActionResult> SearchVehicles([FromQuery] SearchVehiclesDto searchDto)
+    {
+        try
+        {
+            if (searchDto.MinPrice.HasValue && searchDto.MaxPrice.HasValue && 
+                searchDto.MinPrice > searchDto.MaxPrice)
+            {
+                return BadRequest(new { message = "Preço mínimo não pode ser maior que o máximo" });
+            }
+
+            if (searchDto.MinYear.HasValue && searchDto.MaxYear.HasValue && 
+                searchDto.MinYear > searchDto.MaxYear)
+            {
+                return BadRequest(new { message = "Ano mínimo não pode ser maior que o máximo" });
+            }
+
+            var result = await useCaseController.SearchVehicles(searchDto);
+            return Ok(result);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { message = "Erro interno do servidor", details = ex.Message });
+        }
+    }
 }

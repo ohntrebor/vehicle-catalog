@@ -57,4 +57,27 @@ public class VehicleUseCaseController(IVehicleGateway gateway, IVehiclePresenter
 
         return presenter.PresentVehicle(vehicle);
     }
+    
+    /// <summary>
+    /// Busca veículos aplicando filtros específicos
+    /// </summary>
+    /// <param name="searchDto">Filtros de busca</param>
+    /// <returns>Lista de veículos filtrados</returns>
+    public async Task<IEnumerable<VehicleDto>> SearchVehicles(SearchVehiclesDto searchDto)
+    {
+        var useCase = new SearchVehiclesUseCase(gateway);
+        var vehicles = await useCase.ExecuteAsync(
+            searchDto.Brand,
+            searchDto.Model,
+            searchDto.MinPrice,
+            searchDto.MaxPrice,
+            searchDto.Year,
+            searchDto.MinYear,
+            searchDto.MaxYear,
+            searchDto.Color,
+            searchDto.IsAvailable
+        );
+    
+        return presenter.PresentVehicleList(vehicles);
+    }
 }
