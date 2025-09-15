@@ -153,18 +153,18 @@ public class VehiclesController(VehicleUseCaseController useCaseController) : Co
     }
 
     /// <summary>
-    /// Webhook para atualização do status de pagamento de vendas
+    /// Atualização do status de pagamento de vendas
     /// </summary>
-    /// <param name="dto">Dados do webhook contendo código de pagamento e status</param>
+    /// <param name="dto">Dados do status contendo código de pagamento e status</param>
     /// <returns>Confirmação da atualização do status</returns>
     /// <response code="200">Status de pagamento atualizado com sucesso</response>
-    /// <response code="400">Dados do webhook inválidos</response>
+    /// <response code="400">Dados do status inválidos</response>
     /// <response code="404">Código de pagamento não encontrado</response>
-    [HttpPost("payment-webhook")]
+    [HttpPost("payment-status")]
     [ProducesResponseType(200)]
     [ProducesResponseType(400)]
     [ProducesResponseType(404)]
-    public async Task<IActionResult> PaymentWebhook([FromBody] PaymentWebhookDto dto)
+    public async Task<IActionResult> UpdatePaymentStatus([FromBody] UpdatePaymentStatusDto dto)
     {
         var success = await useCaseController.UpdatePaymentStatus(dto);
         

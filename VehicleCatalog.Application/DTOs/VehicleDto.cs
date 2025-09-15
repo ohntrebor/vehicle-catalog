@@ -42,7 +42,7 @@ public class UpdateVehicleDto : CreateVehicleDto
     public Guid Id { get; set; }
 }
 
-public class PaymentWebhookDto
+public class UpdatePaymentStatusDto
 {
     public Guid VehicleId { get; set; }
     public string PaymentCode { get; set; }

@@ -268,15 +268,15 @@ public class VehicleTests : TestBase
 
     #endregion
 
-    #region Testes de Webhook/Cenários Reais
+    #region Testes de Status/Cenários Reais
 
     /// <summary>
-    /// Testa o cenário completo de webhook de pagamento, desde a venda até a confirmação
+    /// Testa o cenário completo de status de pagamento, desde a venda até a confirmação
     /// </summary>
     [Trait("Category", "Integration")]
-    [Trait("Feature", "PaymentWebhook")]
+    [Trait("Feature", "UpdatePaymentStatus")]
     [Fact]
-    public async Task Should_Handle_Payment_Webhook_Confirmation_Scenario()
+    public async Task Should_Handle_Payment_Status_Confirmation_Scenario()
     {
         // Arrange
         using var scope = _serviceProvider.CreateScope();
@@ -289,7 +289,7 @@ public class VehicleTests : TestBase
         context.Vehicles.Add(vehicle);
         await context.SaveChangesAsync();
 
-        // Act - Simular webhook de confirmação
+        // Act - Simular status de confirmação
         var vehicleToUpdate = await context.Vehicles
             .FirstAsync(v => v.PaymentCode == paymentCode);
         vehicleToUpdate.UpdatePaymentStatus("51fg51dg5fdfg1", PaymentStatus.Paid);
@@ -302,16 +302,16 @@ public class VehicleTests : TestBase
         confirmedVehicle.IsSold.Should().BeTrue();
         confirmedVehicle.BuyerCpf.Should().Be("55555555555");
 
-        _logger.LogInformation($"🔗 Webhook confirmação simulado: Pagamento {paymentCode} confirmado para {confirmedVehicle.Brand} {confirmedVehicle.Model}");
+        _logger.LogInformation($"🔗 Status confirmação simulado: Pagamento {paymentCode} confirmado para {confirmedVehicle.Brand} {confirmedVehicle.Model}");
     }
 
     /// <summary>
-    /// Testa o cenário completo de webhook de cancelamento de pagamento
+    /// Testa o cenário completo de status de cancelamento de pagamento
     /// </summary>
     [Trait("Category", "Integration")]
-    [Trait("Feature", "PaymentWebhook")]
+    [Trait("Feature", "UpdatePaymentStatus")]
     [Fact]
-    public async Task Should_Handle_Payment_Webhook_Cancellation_Scenario()
+    public async Task Should_Handle_Payment_Status_Cancellation_Scenario()
     {
         // Arrange
         using var scope = _serviceProvider.CreateScope();
@@ -324,7 +324,7 @@ public class VehicleTests : TestBase
         context.Vehicles.Add(vehicle);
         await context.SaveChangesAsync();
 
-        // Act - Simular webhook de cancelamento
+        // Act - Simular status de cancelamento
         var vehicleToUpdate = await context.Vehicles
             .FirstAsync(v => v.PaymentCode == paymentCode);
         vehicleToUpdate.UpdatePaymentStatus("51fg51dg5fdfg1", PaymentStatus.Cancelled);
@@ -339,7 +339,7 @@ public class VehicleTests : TestBase
         cancelledVehicle.SaleDate.Should().BeNull();
         cancelledVehicle.PaymentCode.Should().BeNull();
 
-        _logger.LogInformation($"🔄 Webhook cancelamento simulado: Veículo {cancelledVehicle.Brand} {cancelledVehicle.Model} disponível novamente");
+        _logger.LogInformation($"🔄 Status cancelamento simulado: Veículo {cancelledVehicle.Brand} {cancelledVehicle.Model} disponível novamente");
     }
     #endregion
 }

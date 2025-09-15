@@ -165,9 +165,9 @@ public abstract class TestBase
     }
 
     /// <summary>
-    /// Simular webhook de pagamento
+    /// Simular status de pagamento
     /// </summary>
-    protected async Task<Vehicle> SimulatePaymentWebhookAsync(string paymentCode, VehicleCatalog.Domain.Enums.PaymentStatus status)
+    protected async Task<Vehicle> SimulateUpdatePaymentStatusAsync(string paymentCode, VehicleCatalog.Domain.Enums.PaymentStatus status)
     {
         using var scope = _serviceProvider.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
@@ -177,7 +177,7 @@ public abstract class TestBase
         {
             vehicle.UpdatePaymentStatus(paymentCode, status);
             await context.SaveChangesAsync();
-            _logger.LogInformation($"🔗 Webhook simulado: {paymentCode} → {status}");
+            _logger.LogInformation($"🔗 Status simulado: {paymentCode} → {status}");
         }
         return vehicle;
     }
